@@ -1,0 +1,26 @@
+tunnel:
+  name: tun0
+  mtu: 8500
+  multi-queue: true
+  # IPv4 address
+  ipv4: 172.31.200.10
+  # Post up script
+  # post-up-script: up.sh
+  # Pre down script
+# pre-down-script: down.sh
+
+socks5:
+  # Socks5 server port
+  port: 10800
+  # Socks5 server address (ipv4/ipv6)
+  address: 127.0.0.1
+  # Socks5 UDP relay mode (tcp|udp)
+  udp: 'udp'
+  pipeline: true
+
+misc:
+  log-level: debug
+  # task stack size (bytes)
+  task-stack-size: 24576 # 20480 + tcp-buffer-size
+  # tcp buffer size (bytes)
+  tcp-buffer-size: 4096
