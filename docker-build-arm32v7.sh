@@ -1,8 +1,8 @@
 #!/bin/zsh
 
-export XRAY_VERSION="v25.6.8"
+export XRAY_VERSION="v25.10.15"
 export T2S_VERSION="v2.6.0"
-export HEV_VERSION="2.11.0"
+export HEV_VERSION="2.13.0"
 XRAY_FILE="Xray-linux-arm32-v7a.zip"
 T2S_FILE="tun2socks-linux-armv7.zip"
 HEV_FILE="hev-socks5-tunnel-linux-arm32v7"

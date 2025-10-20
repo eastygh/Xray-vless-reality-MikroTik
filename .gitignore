@@ -9,6 +9,7 @@
 /tmp/
 /image/tmp/
 /image/distr/
+/image/data/
 
 # Кэш и временные файлы Go
 *.exe
