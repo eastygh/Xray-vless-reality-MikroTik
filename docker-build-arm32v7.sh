@@ -48,6 +48,7 @@ wget -P ${DATA_DIR} "https://raw.githubusercontent.com/runetfreedom/russia-v2ray
 wget -P ${DATA_DIR} "https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/release/geosite.dat"
 
 cd image || exit
+
 docker image rm mikrotik-vless:latest
 docker build --no-cache --progress=plain --platform linux/arm/v7 --output=type=docker --tag mikrotik-vless:latest .
 

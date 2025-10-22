@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION=3.22
+ARG ALPINE_VERSION=latest
 
 FROM alpine:${ALPINE_VERSION} AS builder
 
@@ -24,12 +24,12 @@ LABEL maintainer="eastygh@github.com" \
 RUN apk add --no-cache \
     bash \
     openrc \
+    tzdata \
+    openssl \
     openresolv \
-    iproute2 \
     curl \
     tcpdump \
-    iptables-legacy \
-    libqrencode && \
+    ca-certificates && \
     mkdir -p /opt/xray/{config,data,script} && \
     ln -sf /usr/sbin/iptables-legacy /usr/sbin/iptables && \
     ln -sf /usr/sbin/ip6tables-legacy /usr/sbin/ip6tables && \
@@ -37,8 +37,8 @@ RUN apk add --no-cache \
 
 COPY --from=builder /build/tun2socks-linux-armv7 /opt/xray/tun2socks
 COPY --from=builder /build/xray /opt/xray/xray
-
 COPY ./tmp/hev-socks5-tunnel-linux-arm32v7 /opt/xray/hev-socks5
+
 COPY ./hev.yaml /opt/xray/
 COPY ./data/* /opt/xray/data/
 COPY ./start.sh /opt/xray/
@@ -55,13 +55,14 @@ RUN chmod +x \
     adduser -D -u 1000 xrayuser && \
     chown -R xrayuser:xrayuser /opt/xray
 
-USER xrayuser
+#USER xrayuser
 WORKDIR /opt/xray
 
 ENV USE_HEV="false" \
     XRAY_CONFIG="/opt/xray/config" \
     XRAY_DATA="/opt/xray/data" \
-    XRAY_LOCATION_ASSET=/opt/xray/data
+    XRAY_LOCATION_ASSET=/opt/xray/data \
+    TZ=Europe/Moscow
 
 #HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 #    CMD curl -f http://localhost:8080/ || exit 1
