@@ -68,4 +68,4 @@ ENV USE_HEV="false" \
 #    CMD curl -f http://localhost:8080/ || exit 1
 
 ENTRYPOINT ["sh", "-c"]
-CMD ["/bin/bash /opt/start.sh && /sbin/init"]
+CMD ["/bin/sh", "-c", "/opt/start.sh & exec /sbin/init"]

@@ -11,7 +11,13 @@ cd /opt/xray/ || exit 1
 
 echo "Start Xray core"
 export XRAY_LOCATION_ASSET=/opt/xray/data
-/opt/xray/xray run -confdir /opt/xray/config &
+
+while true; do
+  /opt/xray/xray run -confdir /opt/xray/config
+  echo "Xray crashed with exit code $? — restarting in 5s..."
+  sleep 5
+done &
+
 #pkill xray
 #echo "Start tun2socks or hev"
 #if [ "${USE_HEV}" = "true" ]; then
