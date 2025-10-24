@@ -67,5 +67,5 @@ ENV USE_HEV="false" \
 #HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 #    CMD curl -f http://localhost:8080/ || exit 1
 
-ENTRYPOINT ["sh", "-c"]
-CMD ["/bin/sh", "-c", "/opt/start.sh & exec /sbin/init"]
+ENTRYPOINT ["/bin/bash", "-c"]
+CMD ["/opt/start.sh"]

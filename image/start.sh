@@ -14,9 +14,9 @@ export XRAY_LOCATION_ASSET=/opt/xray/data
 
 while true; do
   /opt/xray/xray run -confdir /opt/xray/config
-  echo "Xray crashed with exit code $? — restarting in 5s..."
-  sleep 5
-done &
+  echo "Xray crashed with exit code $? — restarting in 1s..."
+  sleep 1
+done
 
 #pkill xray
 #echo "Start tun2socks or hev"
